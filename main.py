@@ -54,7 +54,7 @@ def ollama_agent():
 def web_agent():
     search = SerpAPIWrapper()
     person_name = input("Enter the person's name: ")
-    results = search.run(f"find information about {person_name}")
+    results = search.run(f"{person_name} biography profile career background")
     print(results)
 
 
