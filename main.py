@@ -54,7 +54,7 @@ def main():
 
 
 def openAI_agent():
-    person_name = input("Enter the person's name: ")
+    person_name = input("Enter full information about the person you know about: ")
     summary_template = f"""
     You are helpful agent who helps to find the person and provide atleast two interesting facts about the person.
     Person name is {person_name}
@@ -75,7 +75,7 @@ def ollama_agent():
 
 def web_agent():
     search = SerpAPIWrapper()
-    person_name = input("Enter the person's name: ")
+    person_name = input("Enter full information about the person you know about: ")
     results = search.run(f"{person_name} biography profile career background")
     print(results)
 
