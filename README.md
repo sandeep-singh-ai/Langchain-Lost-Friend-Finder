@@ -43,6 +43,8 @@ Create a `.env` file in the project root. Do not commit it.
 ```bash
 OPENAI_API_KEY=your_openai_key
 SERPAPI_API_KEY=your_serpapi_key
+LANGSMITH_API_KEY=langsmith api key
+TAVILY_API_KEY= talivy api key to search with LLM
 ```
 
 `OPENAI_API_KEY` is required for `agent`. `SERPAPI_API_KEY` is required for `web`. `local` does not call those APIs.
