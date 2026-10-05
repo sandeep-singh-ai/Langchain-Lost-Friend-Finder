@@ -1,3 +1,5 @@
+from pydantic import BaseModel, Field
+from typing import List
 from dotenv import load_dotenv
 import os
 from langchain.agents import create_agent
@@ -11,6 +13,17 @@ from tavily import TavilyClient
 
 load_dotenv()
 
+class AgentResponse(BaseModel):
+    name: str = Field(description="the name of the person")
+    age: int = Field(description="the age of the person")
+    occupation: str = Field(description="the occupation of the person")
+    location: str = Field(description="the location of the person")
+    linkedin_url: str = Field(description="the linkedin url of the person")
+    current_company: str = Field(description="the current company of the person")
+    current_position: str = Field(description="the current position of the person")
+    current_location: str = Field(description="the current location of the person")
+    cell_phone_number: str = Field(description="the cell phone number of the person")
+    sources: List[str] = Field(default_factory=list, description="the source of the information")
 
 taily_search = TavilyClient(
     api_key=os.getenv("TAVILY_API_KEY")
@@ -25,8 +38,8 @@ def search_web(query: str) -> str:
     return str(taily_search.search(query))
 
 tools = [search_web]
-openAI_web_agent = create_agent(model=ChatOpenAI(model="gpt-4o-mini", temperature=0), tools=tools)
-ollama_web_agent = create_agent(model=ChatOllama(model="qwen2.5:0.5b", temperature=0), tools=tools)
+openAI_web_agent = create_agent(model=ChatOpenAI(model="gpt-4o-mini", temperature=0), tools=tools, response_format=AgentResponse)
+ollama_web_agent = create_agent(model=ChatOllama(model="qwen2.5:0.5b", temperature=0), tools=tools, response_format=AgentResponse)
 
 def main():
     search_type = input("You like you use the web search or the openAI agent? (serp/agent/local): ")
