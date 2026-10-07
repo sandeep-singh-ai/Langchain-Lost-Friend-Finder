@@ -1,4 +1,4 @@
-# Lost Friend Finder
+# Langchain Lost Friend Finder Agent
 
 A LangChain command-line agent that looks up a person you have lost touch with. You pick how the lookup runs: a live web search, an OpenAI model, or a local Ollama model.
 
